@@ -25,32 +25,11 @@ node {
     }
 
     stage('NPM Install') {
-        sh 'npm i -g @angular/cli@latest'
-    }
-
-    stage('Test') {
-        withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
-          sh 'ng test --progress=false --watch false'
-        }
-        junit '**/test-results.xml'
-    }
-
-    stage('Lint') {
-        sh 'ng lint'
+        sh 'npm install'
     }
 
     stage('Build') {
         milestone()
-        sh 'ng build --prod --aot --sm --progress=false'
-    }
-
-    stage('Archive') {
-        sh 'tar -cvzf dist.tar.gz --strip-components=1 dist'
-        archive 'dist.tar.gz'
-    }
-
-    stage('Deploy') {
-        milestone()
-        echo "Deploying..."
-    }
+        sh 'ng build'
+     }
 }
