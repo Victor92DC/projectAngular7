@@ -25,7 +25,7 @@ node {
     }
 
     stage('NPM Install') {
-        sh 'npm install'
+        sh 'npm i -g @angular/cli@latest'
     }
 
     stage('Test') {
