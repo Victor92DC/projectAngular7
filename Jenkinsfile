@@ -31,5 +31,11 @@ node {
     stage('Build') {
         milestone()
         sh 'ng build'
-     }
+    }
+     
+    stage('Test') {
+        milestone()
+        sh 'ng test'
+    }
+  
 }
