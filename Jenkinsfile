@@ -22,5 +22,6 @@ pipeline{
 			milestone()
 			sh 'ng build --prod --aot --sm --progress=false'
 		}
+	}
 }
 
