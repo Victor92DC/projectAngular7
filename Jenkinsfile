@@ -32,5 +32,10 @@ node {
         milestone()
         sh 'ng build'
     }
+  
+        stage('Folder') {
+        milestone()
+        sh 'echo $FOLDER'
+    }
      
 }
