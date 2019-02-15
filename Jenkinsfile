@@ -24,18 +24,18 @@ node {
         //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
 
-    stage('NPM Install') {
-        sh 'npm install'
-    }
+    //stage('NPM Install') {
+    //    sh 'npm install'
+    //}
 
-    stage('Build') {
-        milestone()
-        sh 'ng build'
-    }
+    //stage('Build') {
+    //    milestone()
+    //    sh 'ng build'
+    //}
   
         stage('Folder') {
         milestone()
-        sh 'echo $FOLDER'
+        sh 'echo "$FOLDER"'
     }
      
 }
