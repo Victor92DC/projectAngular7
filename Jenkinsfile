@@ -33,8 +33,4 @@ node {
         sh 'ng build'
     }
      
-    stage('Folder') {
-        sh 'echo $FOLDER'
-    }
-  
 }
