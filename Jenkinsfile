@@ -15,14 +15,8 @@ pipeline {
     }
     stage ('test'){
       steps{
-        sh '''
-          $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
-        '''
-      }
-      post {
-          always {
-            junit "test-results.xml"
-          }
+        milestone()
+		    sh 'ng test'
       }
     }
     stage ('code quality'){
@@ -32,15 +26,8 @@ pipeline {
     }
     stage ('build') {
       steps{
-        sh '$(npm bin)/ng build --prod --build-optimizer'
-      }
-    }
-    stage ('build image') {
-      steps{
-        sh '''
-          rm -rf node_modules
-          oc start-build angular-5-example --from-dir=. --follow
-        '''
+        milestone()
+		sh 'ng build'
       }
     }
   }
