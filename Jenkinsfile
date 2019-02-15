@@ -1,41 +1,47 @@
-#!groovy
-
-properties(
-    [
-        [$class: 'BuildDiscarderProperty', strategy:
-          [$class: 'LogRotator', artifactDaysToKeepStr: '14', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '60']],
-        pipelineTriggers(
-          [
-              pollSCM('H/15 * * * *'),
-              cron('@daily'),
-          ]
-        )
-    ]
-)
-node {
-    stage('Checkout') {
-        //disable to recycle workspace data to save time/bandwidth
-        deleteDir()
+pipeline{
+  agent { label 'nodejs8' }
+  stages{
+    stage ('checkout'){
+      steps{
         checkout scm
-
-        //enable for commit id in build number
-        //env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
-        //env.git_commit_id_short = env.git_commit_id.take(7)
-        //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
+      }
     }
-
-   stage('NPM Install') {
-       sh 'npm install'
-   }
-
-   stage('Build') {
-      milestone()
-      sh 'ng build'
+    stage ('install modules'){
+      steps{
+        sh '''
+          npm install
+        '''
+      }
+    }
+    stage ('test'){
+      steps{
+        sh '''
+          $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
+        '''
+      }
+      post {
+          always {
+            junit "test-results.xml"
+          }
+      }
+    }
+    stage ('code quality'){
+      steps{
+        sh '$(npm bin)/ng lint'
+      }
+    }
+    stage ('build') {
+      steps{
+        sh '$(npm bin)/ng build --prod --build-optimizer'
+      }
+    }
+    stage ('build image') {
+      steps{
+        sh '''
+          rm -rf node_modules
+          oc start-build angular-5-example --from-dir=. --follow
+        '''
+      }
+    }
   }
-  
-  stage ('Test'){
-      milestone()
-      sh 'ng test'
-  }
-     
 }
