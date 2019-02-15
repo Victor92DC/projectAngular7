@@ -35,7 +35,7 @@ node {
   
       stage('Into to folder') {
           milestone()
-          cd 'C:\jadd\jenkins-2.60.3\jobs\Prueba_Hackaton\workspace'
+          cd 'C:/jadd/jenkins-2.60.3/jobs/Prueba_Hackaton/workspace'
       }
   
       stage('Zip') {
