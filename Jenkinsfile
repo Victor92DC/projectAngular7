@@ -39,7 +39,7 @@ node {
       }
   
       stage('Zip') {
-          for i in $(/bin/ls -ad *); 
+          for $i in $(/bin/ls -ad *); 
           do
             #Files name
             echo $(basename $i)
