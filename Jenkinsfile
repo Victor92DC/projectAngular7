@@ -35,7 +35,7 @@ node {
   
         stage('Folder') {
         milestone()
-        sh 'echo "$FOLDER"'
-    }
+        echo "$FOLDER"
+      }
      
 }
