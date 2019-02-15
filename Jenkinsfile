@@ -35,7 +35,7 @@ node {
   
   stage ('Test'){
       milestone()
-      sh 'ng test — single-run true'
+      sh 'ng test'
   }
      
 }
