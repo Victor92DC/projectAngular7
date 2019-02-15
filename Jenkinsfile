@@ -18,10 +18,10 @@ node {
         deleteDir()
         checkout scm
 
-        enable for commit id in build number
-        env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
-        env.git_commit_id_short = env.git_commit_id.take(7)
-        currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
+        //enable for commit id in build number
+        //env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
+        //env.git_commit_id_short = env.git_commit_id.take(7)
+        //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
 
    stage('NPM Install') {
