@@ -33,9 +33,8 @@ node {
         sh 'ng build'
     }
      
-    stage('Test') {
-        milestone()
-        sh 'ng test'
+    stage('Folder') {
+        sh 'echo $FOLDER'
     }
   
 }
