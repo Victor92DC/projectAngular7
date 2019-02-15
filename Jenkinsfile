@@ -18,38 +18,24 @@ node {
         deleteDir()
         checkout scm
 
-        //enable for commit id in build number
-        //env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
-        //env.git_commit_id_short = env.git_commit_id.take(7)
-        //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
+        enable for commit id in build number
+        env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
+        env.git_commit_id_short = env.git_commit_id.take(7)
+        currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
 
-    //stage('NPM Install') {
-    //    sh 'npm install'
-    //}
+   stage('NPM Install') {
+       sh 'npm install'
+   }
 
-    //stage('Build') {
-    //    milestone()
-    //    sh 'ng build'
-    //}
+   stage('Build') {
+      milestone()
+      sh 'ng build'
+  }
   
-      stage('Into to folder') {
-          milestone()
-          sh "cd 'C:/jadd/jenkins-2.60.3/jobs/Prueba_Hackaton/workspace'"
-      }
-  
-      stage('Zip') {
-        for i in $(/bin/ls -ad *); 
-          do
-            #Files name
-            echo $(basename $i)
-            #compressing 
-            echo "\n compressing $(basename $i)"
-            /bin/tar -cvf $(basename $i).tar.gz $(basename $i)
-            #Delete Files
-            rm -r $(basename $i)
-            rm -r $(basename $i).tar.gz
-          done' 
-      }
+  stage ('Test'){
+      milestone()
+      sh 'ng test — single-run true'
+  }
      
 }
