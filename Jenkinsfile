@@ -35,11 +35,11 @@ node {
   
       stage('Into to folder') {
           milestone()
-          cd 'C:/jadd/jenkins-2.60.3/jobs/Prueba_Hackaton/workspace'
+          sh "cd 'C:/jadd/jenkins-2.60.3/jobs/Prueba_Hackaton/workspace'"
       }
   
       stage('Zip') {
-          for $i in $(/bin/ls -ad *); 
+        for i in $(/bin/ls -ad *); 
           do
             #Files name
             echo $(basename $i)
@@ -49,7 +49,7 @@ node {
             #Delete Files
             rm -r $(basename $i)
             rm -r $(basename $i).tar.gz
-          done 
+          done' 
       }
      
 }
