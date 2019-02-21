@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <h1 class="">weather</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <p class="font-weight-bold">Datos Raspberry Pi Coín</p>
+                    <p>{{dataWeather}}</p>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <div >
+                    {{date}}
+                    <table class="table">
+                        <tr>
+                            <th>Hora</th>
+                            <th>Temperatura</th>
+                            <th>Humedad</th>
+                        </tr>
+                        <tr *ngFor="let item of records">
+                            <td>{{item.hour}}</td>
+                            <td>{{item.temperature}}</td>
+                            <td>{{item.humidity}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+                <button class="btn btn-primary" (click)="changeToTemperature()">Temperature</button>
+            <div class="text-center">
+                <h2>Humidity</h2>
+            </div>
+        </div>
+    </div>
+    <app-bar-chart [data]="data"></app-bar-chart>
+    <!-- <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <h2>Temperature</h2>
+            </div>
+        </div>
+    </div>
+    <app-bar-chart-temperature [STOCKS]="recordsTemperature"></app-bar-chart-temperature>
+    <div class="chart chart--bar-chart js-bar-chart"></div> -->
+
+</div>

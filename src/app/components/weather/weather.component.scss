@@ -1,0 +1,55 @@
+.text-center{
+    margin-top: 5%;
+}
+
+h1{
+    font-size: 4.0em;
+}
+
+:root {
+    --chartMarginBottom: 1.5rem;
+  
+    --chartBarColor: #00e7ff;
+  
+    --chartColumnColor: #e6edf4;
+  
+    --chartAxisColor: #e6edf4;
+    --chartAxisFontSize: 0.625rem;
+    --chartAxisStrokeWidth: 0.125rem;
+  }
+  
+  .chart {
+    margin-bottom: var(--chartMarginBottom);
+  }
+  
+  .chart__bar {
+    fill: var(--chartBarColor);
+  }
+  
+  .chart__column {
+    fill: var(--chartColumnColor);
+  }
+  
+  .chart__axis {
+    font-size: var(--chartAxisFontSize);
+  }
+  
+  .chart__axis path,
+  .chart__axis line {
+    fill: none;
+    stroke: var(--chartAxisColor);
+    stroke-width: var(--chartAxisStrokeWidth);
+  }
+  
+  .chart__axis path {
+    display: none;
+  }
+  
+  /* modules/image.css */
+  
+  svg {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  
